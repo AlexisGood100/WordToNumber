@@ -116,7 +116,7 @@ document.getElementById('answer').value = '';
 
 function checkForEndOfGame(){
     setInterval(()=>{
-if(timerValue >= 10){
+if(timerValue >= 99){
 document.querySelector('.game-container').remove();
 document.querySelector('.results-container').classList.remove('hide');
 document.querySelector('.results').innerText = correctGuesses;
