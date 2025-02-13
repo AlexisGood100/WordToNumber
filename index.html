@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Number Puzzle Game</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background-color: #f8f1f1; /* Soft pink background */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            color: #d32f2f; /* Red for headings */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .table-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            gap: 10px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #f48fb1; /* Light pink border */
+            font-weight: 600;
+            font-size: 20px;
+            background-color: #f8bbd0; /* Soft pink background for cells */
+            border-radius: 5px;
+        }
+
+        .word-container {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #d32f2f; /* Red for word container */
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .btn {
+            background-color: #e91e63; /* Deep pink for buttons */
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            font-size: 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #c2185b; /* Darker pink on hover */
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #f48fb1; /* Light pink border */
+            border-radius: 6px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 18px;
+            font-size: 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #4caf50; /* Green button */
+            color: white;
+        }
+
+        button:hover {
+            background-color: #388e3c; /* Darker green on hover */
+        }
+
+        .results-container {
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #d32f2f; /* Red for results text */
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .table-container {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            table {
+                grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            }
+
+            td {
+                padding: 6px;
+                font-size: 12px;
+            }
+
+            input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Letter Number Puzzle Game</h1>
+    <div class="start-container">
+        <h2>Instructions</h2>
+        <p>Use the table on the left side to decode the word as quickly as possible.</p>
+        <p>You have one minute to decode as many words as possible.</p>
+        <button class="btn btn-start-game-easy">Start Game (Easy)</button>
+        <button class="btn btn-start-game-medium">Start Game (Medium)</button>
+        <button class="btn btn-start-game-hard">Start Game (Hard)</button>
+    </div>
+    
+    <div class="container game-container hide">
+        <div class="table-container">
+            <h3>Letter Mapping</h3>
+            <table id="mapping-table"></table>
+        </div>
+
+        <div>
+            <p><strong>Timer:</strong> <span class="time">0</span></p>
+            <p><strong>Points:</strong> <span class="points">0</span></p>
+            <div class="word-container" id="word-display"></div>
+            <input type="text" id="answer" placeholder="Enter number code">
+            <button onclick="checkAnswer()">Submit</button>
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <div class="results-container hide">
+        <h2>Congratulations! You scored <span class="results-score">0</span> points</h2>
+        <p>You decoded <span class="results"> </span> words</p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
